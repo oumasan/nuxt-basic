@@ -11,8 +11,10 @@ const state = reactive({
 
 const validate = (state: any): FormError[] => {
   const errors = []
-  if (!state.firstName) errors.push({ path: 'firstName', message: 'Required' })
-  if (!state.lastName) errors.push({ path: 'lastName', message: 'Required' })
+  if (!state.firstName) errors.push({ path: 'firstName', message: '必須' })
+  if (!state.lastName) errors.push({ path: 'lastName', message: '必須' })
+  if (!state.mail) errors.push({ path: 'mail', message: '必須' })
+  if (!state.companyName) errors.push({ path: 'companyName', message: '必須' })
   return errors
 }
 
@@ -36,7 +38,7 @@ async function onSubmit (event: FormSubmitEvent<any>) {
       </UFormGroup>
     </div>
 
-    <UFormGroup label="メールアドレス" :required="true" class="w-60">
+    <UFormGroup label="メールアドレス" name="mail" :required="true" class="w-60">
       <UInput v-model="state.mail" placeholder="you@example.com" icon="i-heroicons-envelope" />
     </UFormGroup>
 
@@ -45,7 +47,7 @@ async function onSubmit (event: FormSubmitEvent<any>) {
       <UInput v-model="state.companyName" />
     </UFormGroup>
 
-    <UFormGroup label="部署名" name="department" :required="true">
+    <UFormGroup label="部署名" name="department" :required="false">
       <UInput v-model="state.department" />
     </UFormGroup>
 
